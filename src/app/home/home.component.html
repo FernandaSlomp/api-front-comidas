@@ -28,6 +28,12 @@
     </thead>
 
     <tbody>
-        
+        <tr *ngFor="let a of alimentos; index as i">
+            <td>{{i + 1}}</td>
+            <td>{{a.nomeAlimento}}</td>
+            <td>{{a.quantidade}}</td>
+            <td>{{a.recomendado}}</td>
+            <td><button class="btn btn-success">Selecionar</button></td>
+        </tr>
     </tbody>
 </table>
