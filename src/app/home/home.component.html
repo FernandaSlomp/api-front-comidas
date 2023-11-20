@@ -1,15 +1,16 @@
 <form>
     <img src="assets/food.png">
 
-    <input type="text"    placeholder="Alimento"   class="form-control">                  
-    <input type="number"  placeholder="Quantidade"  class="form-control">
+
+    <input type="text"    placeholder="Alimento"   class="form-control" name="nomeAlimento"   [(ngModel)]="alimento.nomeAlimento" >                  
+    <input type="number"  placeholder="Quantidade"  class="form-control" name="quantidade"   [(ngModel)]="alimento.quantidade" >
 
     <div class="form-check form-switch">
-        <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault" name="recomendado"   [(ngModel)]="alimento.recomendado" >
         <label class="form-check-label custom-switch-label" for="flexSwitchCheckDefault">Esse alimento é recomendado ao paciente?</label>
     </div>
 
-    <input type="button" value="Cadastrar"  *ngIf="ehCadastro" class="btn btn-primary">
+    <input type="button" value="Cadastrar"  *ngIf="ehCadastro" class="btn btn-primary" (click)="cadastrar()">
     <input type="button" value="Alterar"   *ngIf="!ehCadastro" class="btn btn-warning">
     <input type="button" value="Remover"  *ngIf="!ehCadastro"  class="btn btn-danger">
     <input type="button" value="Cancelar"  *ngIf="!ehCadastro" class="btn btn-secondary">

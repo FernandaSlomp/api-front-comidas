@@ -16,6 +16,9 @@ export class AlimentoService {
     return this.http.get<Alimento[]>(this.url);
   }
   
+  cadastrar(obj:Alimento):Observable<Alimento>{
+    return this.http.post<Alimento>(this.url, obj);
+  }
 
   
 }

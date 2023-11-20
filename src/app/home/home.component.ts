@@ -2,15 +2,18 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Alimento } from '../modelo/Alimento';
 import { AlimentoService } from '../servico/alimento.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-imports: [CommonModule],
+imports: [CommonModule,FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  alimento = new Alimento();
 
   ehCadastro:boolean = true;
 
@@ -24,6 +27,15 @@ export class HomeComponent {
 
   ngOnInit(){
     this.selecionar();
+  }
+
+  cadastrar():void{
+    this.servico.cadastrar(this.alimento)
+    .subscribe(retorno => {
+      this.alimentos.push(retorno);
+      this.alimento = new Alimento();
+      alert('Alimento cadastrado!')
+    }); 
   }
 
 }
