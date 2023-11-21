@@ -16,8 +16,8 @@
     <input type="button" value="Cancelar"  *ngIf="!ehCadastro" class="btn btn-secondary">
 
 </form>
-
-<table class="table">
+<input *ngIf="tabela" class="form-control custom-find-food" type="text" [(ngModel)]="termoBusca" placeholder="Buscar por alimento">
+<table class="table" *ngIf="tabela" >
     <thead>
         <tr>
             <th>#</th>
@@ -27,14 +27,14 @@
             <th>Selecionar</th>
         </tr>
     </thead>
-
+    
     <tbody>
-        <tr *ngFor="let a of alimentos; index as i">
+        <tr *ngFor="let a of filterAlimentos(); index as i">
             <td>{{i + 1}}</td>
             <td>{{a.nomeAlimento}}</td>
             <td>{{a.quantidade}}</td>
             <td>{{a.recomendado}}</td>
-            <td><button class="btn btn-success">Selecionar</button></td>
+            <td><button class="btn btn-success" (click)="selecionarAlimento(i)">Selecionar</button></td>
         </tr>
     </tbody>
 </table>

@@ -17,6 +17,8 @@ export class HomeComponent {
 
   ehCadastro:boolean = true;
 
+  tabela:boolean = true; 
+
   alimentos:Alimento[] = [];
 
   constructor(private servico:AlimentoService){}
@@ -36,6 +38,34 @@ export class HomeComponent {
       this.alimento = new Alimento();
       alert('Alimento cadastrado!')
     }); 
+  }
+
+  selecionarAlimento(id:number):void{
+    this.alimento = this.alimentos[id];
+    this.ehCadastro = false;
+    this.tabela = false;
+  }
+
+  
+  editar():void{
+    this.servico.editar(this.alimento)
+    .subscribe(retorno => {
+     // let id = this.alimentos.findIndex(id);
+      this.alimentos.push(retorno);
+      this.alimento = new Alimento();
+      alert('Alimento alterado!')
+    }); 
+  }
+
+  termoBusca: string = '';
+
+  filterAlimentos(): any[] {
+    if (!this.termoBusca || this.termoBusca.trim() === '') {
+      return this.alimentos;
+    }
+
+    const termoLowerCase = this.termoBusca.toLowerCase();
+    return this.alimentos.filter(a => a.nomeAlimento.toLowerCase().includes(termoLowerCase));
   }
 
 }

@@ -20,5 +20,8 @@ export class AlimentoService {
     return this.http.post<Alimento>(this.url, obj);
   }
 
+  editar(obj:Alimento):Observable<Alimento>{
+    return this.http.put<Alimento>(this.url, obj);
+  }
   
 }
