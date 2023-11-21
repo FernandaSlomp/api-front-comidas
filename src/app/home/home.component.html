@@ -11,7 +11,7 @@
     </div>
 
     <input type="button" value="Cadastrar"  *ngIf="ehCadastro" class="btn btn-primary" (click)="cadastrar()">
-    <input type="button" value="Alterar"   *ngIf="!ehCadastro" class="btn btn-warning">
+    <input type="button" value="Alterar"   *ngIf="!ehCadastro" class="btn btn-warning" (click)="editar()">
     <input type="button" value="Remover"  *ngIf="!ehCadastro"  class="btn btn-danger">
     <input type="button" value="Cancelar"  *ngIf="!ehCadastro" class="btn btn-secondary">
 

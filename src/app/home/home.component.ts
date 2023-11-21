@@ -50,9 +50,13 @@ export class HomeComponent {
   editar():void{
     this.servico.editar(this.alimento)
     .subscribe(retorno => {
-     // let id = this.alimentos.findIndex(id);
-      this.alimentos.push(retorno);
+      let id = this.alimentos.findIndex(obj  => {
+        return obj.codigo == retorno.codigo;
+      });
+      this.alimentos[id] = retorno;
       this.alimento = new Alimento();
+      this.ehCadastro = true;
+      this.tabela = true;
       alert('Alimento alterado!')
     }); 
   }
