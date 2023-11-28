@@ -23,5 +23,9 @@ export class AlimentoService {
   editar(obj:Alimento):Observable<Alimento>{
     return this.http.put<Alimento>(this.url, obj);
   }
+
+  remover(codigo:number):Observable<void>{
+    return this.http.delete<void>(this.url + '/' + codigo);
+  }
   
 }

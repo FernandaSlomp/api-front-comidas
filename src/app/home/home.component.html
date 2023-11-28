@@ -12,8 +12,8 @@
 
     <input type="button" value="Cadastrar"  *ngIf="ehCadastro" class="btn btn-primary" (click)="cadastrar()">
     <input type="button" value="Alterar"   *ngIf="!ehCadastro" class="btn btn-warning" (click)="editar()">
-    <input type="button" value="Remover"  *ngIf="!ehCadastro"  class="btn btn-danger">
-    <input type="button" value="Cancelar"  *ngIf="!ehCadastro" class="btn btn-secondary">
+    <input type="button" value="Remover"  *ngIf="!ehCadastro"  class="btn btn-danger" (click)="remover()">
+    <input type="button" value="Cancelar"  *ngIf="!ehCadastro" class="btn btn-secondary" (click)="cancelar()">
 
 </form>
 <input *ngIf="tabela" class="form-control custom-find-food" type="text" [(ngModel)]="termoBusca" placeholder="Buscar por alimento">
@@ -34,7 +34,7 @@
             <td>{{a.nomeAlimento}}</td>
             <td>{{a.quantidade}}</td>
             <td>{{a.recomendado}}</td>
-            <td><button class="btn btn-success" (click)="selecionarAlimento(i)">Selecionar</button></td>
+            <td><button class="btn btn-success" (click)="selecionarAlimento(a.codigo)">Selecionar</button></td>
         </tr>
     </tbody>
 </table>

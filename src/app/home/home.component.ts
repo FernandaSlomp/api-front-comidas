@@ -19,6 +19,8 @@ export class HomeComponent {
 
   tabela:boolean = true; 
 
+  termoBusca: string = '';
+
   alimentos:Alimento[] = [];
 
   constructor(private servico:AlimentoService){}
@@ -41,7 +43,9 @@ export class HomeComponent {
   }
 
   selecionarAlimento(id:number):void{
-    this.alimento = this.alimentos[id];
+
+    this.alimento = this.alimentos.find(a => a.codigo === id)!;
+    //this.alimento = this.alimentos[id];
     this.ehCadastro = false;
     this.tabela = false;
   }
@@ -61,8 +65,6 @@ export class HomeComponent {
     }); 
   }
 
-  termoBusca: string = '';
-
   filterAlimentos(): any[] {
     if (!this.termoBusca || this.termoBusca.trim() === '') {
       return this.alimentos;
@@ -71,5 +73,26 @@ export class HomeComponent {
     const termoLowerCase = this.termoBusca.toLowerCase();
     return this.alimentos.filter(a => a.nomeAlimento.toLowerCase().includes(termoLowerCase));
   }
+
+  remover():void{
+    this.servico.remover(this.alimento.codigo)
+    .subscribe(retorno => {
+      let id = this.alimentos.findIndex(obj  => {
+        return obj.codigo == this.alimento.codigo;
+      });
+      this.alimentos.splice(id, 1)
+      this.alimento = new Alimento();
+      this.ehCadastro = true;
+      this.tabela = true;
+      alert('Alimento excluido!')
+    });
+  }
+
+  cancelar():void{
+    this.alimento = new Alimento();
+    this.ehCadastro = true;
+    this.tabela = true; 
+  }
+  
 
 }
